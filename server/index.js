@@ -3,6 +3,8 @@ const mysql = require("mysql");
 const cors= require("cors");
 const app = express();
 
+app.use(cors());
+
 
 app.use(express.json());
 // app.use(cors());
@@ -20,11 +22,10 @@ const db = mysql.createConnection({
 });
 
 const verifyJWT = (req,res,next)=>{
-    const token =req.headers("x-access-token")
+    const token =req.headers["x-access-token"]
     if (!token){
         res.send("No token, please provide")
     } else {
-        console.log("Pos4")
         verify(token, "jwtSecret", (err,decoded)=>{
             if (err){
                 res.json({auth:false, message:"U failed to auth"})
@@ -38,7 +39,7 @@ const verifyJWT = (req,res,next)=>{
 
 
 app.get('/isUserAuth', verifyJWT, (req, res) => {
-  res.send("Yo Authenitcated!")
+  res.send({state:true})
 })
 
 
@@ -99,17 +100,22 @@ app.post('/login', (req,res)=>{
         if (result.length > 0) {
             // res.send( result); we will move this to below but this is original spot
             if (response){
+                // console.log("req",req.session)
                 // req.session.user=result;
-                // const id = result[0].id
-                // console.log("id",id)
-                // const token = jwt.sign({id}, "jwtSecret") //need to make jwtSecret a .env file and a .env variable when publishing
-                // req.session.user = result;
+                // console.log("req",req)
+                console.log("result",result)
+                const id = result[0].username
+                console.log("id",id)
+                const token = jwt.sign({id}, "jwtSecret") //need to make jwtSecret a .env file and a .env variable when publishing
+                console.log("token",token)
 
-                // res.json({auth:true, token: token, result: result})
-                res.send( result);
+                res.json({auth:true, token: token, result: result})
+                // console.log("res",res)
+
+                // res.send( result);
             }
         }else{
-            res.send({message:"Wrong username/password combination!"});
+            res.json({auth:false,message:"Wrong username/password combination!"});
         }
 })});
 

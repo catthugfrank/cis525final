@@ -13,6 +13,7 @@ import LoggedHome from "./Pages/LoggedHome";
 
 import ContactUs from "./Pages/ContactUs";
 import ErrorPage from "./Pages/ErrorPage";
+import PrivateRoutes from "./Pages/PrivateRoutes";
 
 function App() {
     // const [usernameReg, setUsernameReg] = useState('')
@@ -47,14 +48,16 @@ function App() {
     // };
     return (
         <Router>
-            {/*<nav>*/}
-            {/*    <Link to="/">Sign Out</Link>*/}
-            {/*    <Link to="/loggedhome">About</Link>*/}
-            {/*    <Link to="/contactus">Contact</Link>*/}
-            {/*</nav>*/}
+            <nav>
+                {/*<Link to="/">Sign Out</Link>*/}
+                {/*<Link to="/loggedhome">About</Link>*/}
+                {/*<Link to="/contactus">Contact</Link>*/}
+            </nav>
             <Routes>
                 <Route path="/" element={<Home/>}/>
-                <Route path="/loggedhome" element={<LoggedHome/>}/>
+                <Route element={<PrivateRoutes/>}>
+                    <Route path="/loggedhome" element={<LoggedHome/>} exact/>
+                </Route>
                 <Route path="/contactus" element={<ContactUs/>}/>
                 <Route path="*" element={<ErrorPage/>}/>
             </Routes>
