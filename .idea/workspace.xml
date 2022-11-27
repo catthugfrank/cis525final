@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1d95bb7-8fef-4e15-b36e-4289dd8fe889" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/LoggedHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LoggedHome.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/PrivateRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/PrivateRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="a1d95bb7-8fef-4e15-b36e-4289dd8fe889" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,7 +46,7 @@
       <option name="presentableId" value="Default" />
       <updated>1668978324667</updated>
       <workItem from="1668978326107" duration="13107000" />
-      <workItem from="1669319880293" duration="42311000" />
+      <workItem from="1669319880293" duration="42634000" />
     </task>
     <servers />
   </component>
