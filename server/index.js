@@ -60,7 +60,6 @@ app.post('/register', (req, res)=>{
     console.log(req.body.password)
 
     var usernameRe = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
     var passwordRe = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 
     if (usernameRe.test(username) && passwordRe.test(req.body.password)) {
@@ -98,26 +97,36 @@ app.post('/login', (req,res)=>{
         }
 
         if (result.length > 0) {
-            // res.send( result); we will move this to below but this is original spot
             if (response){
-                // console.log("req",req.session)
-                // req.session.user=result;
-                // console.log("req",req)
-                console.log("result",result)
                 const id = result[0].username
-                console.log("id",id)
                 const token = jwt.sign({id}, "jwtSecret") //need to make jwtSecret a .env file and a .env variable when publishing
-                console.log("token",token)
-
                 res.json({auth:true, token: token, result: result})
-                // console.log("res",res)
-
-                // res.send( result);
             }
         }else{
             res.json({auth:false,message:"Wrong username/password combination!"});
         }
 })});
+
+app.post('/deleteAcc', (req, res)=>{
+
+    const username = req.body.username;
+    const password = req.body.password;
+
+    db.query("DELETE FROM USERS WHERE username=? AND password=?",
+        [username, password],
+        (err, result)=>{
+
+            if(err){
+                res.send({err:err})
+            }
+            if (result.affectedRows > 0) {
+                res.json({status:true})
+
+            }else{
+                res.json({status:false})
+            }
+})});
+
 
 app.listen(3001, 'localhost',()=>{
     console.log("running server");

@@ -1,25 +1,46 @@
-import React, {useContext} from "react";
+import React, {useState} from "react";
 import {useNavigate,useLocation} from "react-router-dom";
-import {Context} from "../context/Context";
+import Axios from "axios";
 
 
 const LoggedHome = () => {
     const location = useLocation();
-    const navigate = useNavigate();
-    console.log("this",this)
-    console.log("location",location)
-    // const { items, setItems } = useContext(Context);
-    // const handlertwo = () => {
-    //     navigate("/");
-    // };
+    let navigate = useNavigate();
+
+    let username = location.state.username
+
+    const [password, setPassword] = useState('')
+    const [delStatus, setDelStatus] = useState(false)
+
+
+    const deleteAcc =() => {
+        Axios.post('http://localhost:3001/deleteAcc', {
+            username: username,
+            password: password,
+        }).then((response)=>{
+            if (response.data.status){
+                localStorage.clear()
+                navigate('/',{state:{delState:true}});
+            } else {
+                setDelStatus("Wrong password!")
+            }
+            console.log("Response data",response.data);
+        });
+    };
+
     return (
         <div>
             <h2>Welcome to Page Two</h2>
             <p>Welcome {location.state.username}!</p>
-            {/*Updated new value Count:<b>{items}</b>*/}
-            {/*<div>*/}
-            {/*    <button onClick={handlertwo}>Move to Page One</button>*/}
-            {/*</div>*/}
+            <div>
+            <h3>Delete password below</h3>
+            <label>Password</label>
+            <input type="text" onChange={(e)=>{
+                setPassword(e.target.value);
+            }}/>
+            <button onClick={deleteAcc}>Register</button>
+            </div>
+            <h1>{delStatus}</h1>
         </div>
     );
 };
