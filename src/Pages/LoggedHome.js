@@ -13,6 +13,10 @@ const LoggedHome = () => {
     const [delStatus, setDelStatus] = useState(false)
 
 
+    const signOut =() =>{
+        localStorage.clear()
+        navigate('/',{state:{delState:true}});
+    }
     const deleteAcc =() => {
         Axios.post('http://localhost:3001/deleteAcc', {
             username: username,
@@ -41,6 +45,11 @@ const LoggedHome = () => {
             <button onClick={deleteAcc}>Register</button>
             </div>
             <h1>{delStatus}</h1>
+            <div>
+                <h2>Sign Out</h2>
+                <button onClick={signOut}>Sign Out</button>
+
+            </div>
         </div>
     );
 };

@@ -30,6 +30,7 @@ const verifyJWT = (req,res,next)=>{
             if (err){
                 res.json({auth:false, message:"U failed to auth"})
             } else {
+                res.json({auth:true})
                 req.userId=decoded.id;
                 next();
             }
@@ -39,7 +40,9 @@ const verifyJWT = (req,res,next)=>{
 
 
 app.get('/isUserAuth', verifyJWT, (req, res) => {
-  res.send({state:true})
+    console.log(req)
+    console.log(res)
+  // res.send({state:true})
 })
 
 

@@ -60,7 +60,9 @@ function Home() {
             headers:{
                 "x-access-token": localStorage.getItem("token")
             }}).then((response)=>{
-            componentA()
+                if (response.data.auth){
+                    componentA()
+                }
         });
     };
 
