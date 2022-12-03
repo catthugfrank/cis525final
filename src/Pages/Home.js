@@ -21,8 +21,6 @@ function Home() {
     const [registerStatus, setRegStatus] = useState('')
 
 
-
-
     const register =() => {
         Axios.post('http://localhost:3001/register', {
             username: usernameReg,
@@ -55,6 +53,13 @@ function Home() {
         navigate('/loggedhome',{state:{username: username}});
     }
 
+    const runML = () =>{
+        // navigate('/getAnswer');
+        console.log("Hit")
+        Axios.post('http://localhost:3001/getAnswer').then((response)=>{
+            console.log("WORKED!");
+        });
+    }
     const userAuth=()=>{
         Axios.get("http://localhost:3001/isUserAuth", {
             headers:{
@@ -95,7 +100,7 @@ function Home() {
             }}/>
             <button onClick={login}>Login</button>
               <h1>{loginStatus}</h1>
-
+              <button onClick={runML}>Run ML</button>
           </div>
 
         </div>

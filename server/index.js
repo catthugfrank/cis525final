@@ -2,6 +2,7 @@ const express = require("express");
 const mysql = require("mysql");
 const cors= require("cors");
 const app = express();
+const { spawn } = require("child_process");
 
 app.use(cors());
 
@@ -53,6 +54,36 @@ app.use(
         credentials: true,
     })
 );
+
+app.post('/getAnswer', (req, res)=> {
+    // const input =
+    console.log("Hello")
+    var data2send;
+    // process.env.Path='../venv/Scripts/python.exe'
+    // console.log(process.env)
+    let options = {
+        pythonPath: '../venv/Scripts',
+        Path: '../venv/Scripts',
+    };
+    const py = spawn("python", ["./ml.py",  options]);
+    // console.log(py)
+    // C:\Users\frank\IdeaProjects\cis525final\venv\Scripts\python.exe
+    py.stdout.on("data", function (data) {
+
+        data2send = data.toString();
+        console.log(data2send)
+    });
+    //
+    py.stderr.on("data", function (data) {
+        console.log("Pipe data from python script ...");
+        data2send = data.toString();
+        console.log("Error below")
+        console.log(data2send)
+    });
+    // py.on("close", () => {
+    //
+    // })
+});
 
 app.post('/register', (req, res)=>{
 
