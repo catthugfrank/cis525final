@@ -13,13 +13,14 @@ app.use(express.json());
 const jwt = require('jsonwebtoken')
 const {response} = require("express");
 const {verify} = require("jsonwebtoken");
+const path = require("path");
 
 const db = mysql.createConnection({
     user:"root",
     host:"127.0.0.1",
     port:"3306",
-    password:"stabster123",
-    database: "LoginSystem",
+    password:"password",
+    database: "loginsystem",
 });
 
 const verifyJWT = (req,res,next)=>{
@@ -57,19 +58,19 @@ app.use(
 
 app.post('/getAnswer', (req, res)=> {
     // const input =
-    console.log("Hello")
     var data2send;
     // process.env.Path='../venv/Scripts/python.exe'
-    // console.log(process.env)
-    let options = {
-        pythonPath: '../venv/Scripts',
-        Path: '../venv/Scripts',
-    };
-    const py = spawn("python", ["./ml.py",  options]);
+
+    var path = require("path");
+    console.log(path.resolve("../") + "/venv/bin");
+    process.env.PATH=path.resolve("../") + "/venv/bin";
+    const py = spawn("python", ["./ml.py"]);
+    // const py = spawn("python", ["./ml.py",  options]);
+
     // console.log(py)
     // C:\Users\frank\IdeaProjects\cis525final\venv\Scripts\python.exe
-    py.stdout.on("data", function (data) {
 
+    py.stdout.on("data", function (data) {
         data2send = data.toString();
         console.log(data2send)
     });

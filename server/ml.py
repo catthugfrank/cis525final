@@ -1,8 +1,14 @@
 import joblib
 import sys
 import subprocess
-# import transformers
-# import torch
+import transformers
+import torch
+
+# import sys
+# print(sys.path)
+
+# subprocess.check_call([sys.executable, "-m", "pip", "install", "joblib"])
+#
 # subprocess.check_call([sys.executable, "-m", "pip", "install", "torch"])
 # subprocess.check_call([sys.executable, "-m", "pip", "install", "transformers"])
 # return "hey"
