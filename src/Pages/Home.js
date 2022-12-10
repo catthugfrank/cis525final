@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 function Home() {
+    const baseUrl = process.env.baseURL || "http://localhost:3001"
     let navigate = useNavigate();
     const location = useLocation();
 
@@ -22,7 +23,7 @@ function Home() {
 
 
     const register =() => {
-        Axios.post('http://localhost:3001/register', {
+        Axios.post(baseUrl+'/register', {
             username: usernameReg,
             password: passwordReg,
         }).then((response)=>{
@@ -33,7 +34,7 @@ function Home() {
     };
 
     const login =() => {
-        Axios.post('http://localhost:3001/login', {
+        Axios.post(baseUrl+'/login', {
             username: username,
             password: password,
         }).then((response)=>{
@@ -56,12 +57,12 @@ function Home() {
     const runML = () =>{
         // navigate('/getAnswer');
         console.log("Hit")
-        Axios.post('http://localhost:3001/getAnswer').then((response)=>{
+        Axios.post(baseUrl+'/getAnswer').then((response)=>{
             console.log("WORKED!");
         });
     }
     const userAuth=()=>{
-        Axios.get("http://localhost:3001/isUserAuth", {
+        Axios.get(baseUrl+"/isUserAuth", {
             headers:{
                 "x-access-token": localStorage.getItem("token")
             }}).then((response)=>{
