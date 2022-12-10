@@ -14,7 +14,7 @@ const jwt = require('jsonwebtoken')
 const {response} = require("express");
 const {verify} = require("jsonwebtoken");
 const path = require("path");
-
+var PORT = process.env.PORT || 3001;
 const db = mysql.createConnection({
     user:"root",
     host:"127.0.0.1",
@@ -163,6 +163,6 @@ app.post('/deleteAcc', (req, res)=>{
 })});
 
 
-app.listen(3001, 'localhost',()=>{
+app.listen(PORT, 'localhost',()=>{
     console.log("running server");
 });
