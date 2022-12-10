@@ -4,6 +4,7 @@ import Axios from "axios";
 
 
 const LoggedHome = () => {
+    const baseUrl = process.env.baseURL || "http://localhost:3001"
     const location = useLocation();
     let navigate = useNavigate();
 
@@ -18,7 +19,7 @@ const LoggedHome = () => {
         navigate('/',{state:{delState:true}});
     }
     const deleteAcc =() => {
-        Axios.post('http://localhost:3001/deleteAcc', {
+        Axios.post(baseUrl+'/deleteAcc', {
             username: username,
             password: password,
         }).then((response)=>{

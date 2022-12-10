@@ -6,14 +6,14 @@ import {useState, useEffect} from "react";
 
 
 const PrivateRoutes = () => {
-
+    const baseUrl = process.env.baseURL || "http://localhost:3001"
     let navigate = useNavigate();
 
 
     const [loginStatus, setloginStatus] = useState(false)
 
     const userAuth=()=>{
-        Axios.get("http://localhost:3001/isUserAuth", {
+        Axios.get(baseUrl+"/isUserAuth", {
             headers:{
                 "x-access-token": localStorage.getItem("token")
             }}).then((response)=>{
