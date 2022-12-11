@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a1d95bb7-8fef-4e15-b36e-4289dd8fe889" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/ml.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/ml.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/LoggedHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LoggedHome.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +53,7 @@
       <recent name="C:\Users\frank\IdeaProjects\cis525final\server" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/server" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -91,7 +93,7 @@
       <workItem from="1669319880293" duration="43259000" />
       <workItem from="1669562419411" duration="19209000" />
       <workItem from="1670201706063" duration="14273000" />
-      <workItem from="1670707656067" duration="1054000" />
+      <workItem from="1670707656067" duration="8132000" />
     </task>
     <servers />
   </component>

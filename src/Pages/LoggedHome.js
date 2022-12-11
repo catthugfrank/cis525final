@@ -13,6 +13,10 @@ const LoggedHome = () => {
     const [password, setPassword] = useState('')
     const [delStatus, setDelStatus] = useState(false)
 
+    const [question, setQuestion] = useState('')
+    const [orig, setOrig] = useState('')
+    const [answer, setAnswer] = useState('')
+
 
     const signOut =() =>{
         localStorage.clear()
@@ -29,7 +33,18 @@ const LoggedHome = () => {
             } else {
                 setDelStatus("Wrong password!")
             }
-            console.log("Response data",response.data);
+        });
+    };
+
+    const getAns =() => {
+        Axios.post(baseUrl+'/getAnswer', {
+            orig: orig,
+            question: question,
+        }).then((response)=>{
+            if (response.data.message){
+                console.log(response.data.message)
+                setAnswer(response.data.message)
+            }
         });
     };
 
@@ -38,18 +53,31 @@ const LoggedHome = () => {
             <h2>Welcome to Page Two</h2>
             <p>Welcome {location.state.username}!</p>
             <div>
-            <h3>Delete password below</h3>
-            <label>Password</label>
-            <input type="text" onChange={(e)=>{
-                setPassword(e.target.value);
-            }}/>
-            <button onClick={deleteAcc}>Register</button>
+                <h2>Get Answer:</h2>
+                <p>What do you want to find?</p>
+                <input type="text" onChange={(e)=>{
+                    setQuestion(e.target.value);
+                }}/>
+                <p>Original Text</p>
+                <textarea name="paragraph_text" cols="50" rows="10" onChange={(e)=>{
+                    setOrig(e.target.value);
+                }}></textarea>
+                <button onClick={getAns}>Get Answer</button>
+                <h1>{answer}</h1>
             </div>
-            <h1>{delStatus}</h1>
+
             <div>
                 <h2>Sign Out</h2>
                 <button onClick={signOut}>Sign Out</button>
-
+            </div>
+            <div>
+                <h3>Delete Account below</h3>
+                <label>Password</label>
+                <input type="text" onChange={(e)=>{
+                    setPassword(e.target.value);
+                }}/>
+                <button onClick={deleteAcc}>Register</button>
+                <h1>{delStatus}</h1>
             </div>
         </div>
     );

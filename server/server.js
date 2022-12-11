@@ -22,6 +22,36 @@ const db = mysql.createConnection({
     database: "loginsystem",
 });
 
+const sql = require('mssql')
+const sqlConfig = {
+    user: 'connWebServer',
+    password: 'connWebServer',
+    database: 'CIS525_StudentList',
+    server: '141.215.69.65',
+    options: {
+        trustServerCertificate: true
+    }
+}
+
+
+async function getConnection(){
+    try {
+        console.log(sqlConfig, 'sqlConfig')
+
+        let pool = await new sql.ConnectionPool(sqlConfig);
+        let connect = await pool.connect();
+        let request = await connect.request();
+        return request;
+    } catch (err) {
+        // ... error checks
+        console.log(err.message)
+    }
+}
+
+module.exports = {
+    getConnection
+}
+
 const verifyJWT = (req,res,next)=>{
     const token =req.headers["x-access-token"]
     if (!token){
@@ -61,24 +91,17 @@ app.post('/getAnswer', (req, res)=> {
     // process.env.Path='../venv/Scripts/python.exe'
 
     var path = require("path");
-    console.log(path.resolve("../") + "/venv/bin");
     process.env.PATH=path.resolve("../") + "/venv/bin";
     const py = spawn("python", ["./ml.py"]);
-    // const py = spawn("python", ["./ml.py",  options]);
-
-    // console.log(py)
-    // C:\Users\frank\IdeaProjects\cis525final\venv\Scripts\python.exe
 
     py.stdout.on("data", function (data) {
         data2send = data.toString();
-        console.log(data2send)
+        res.send({message: data2send});
     });
     //
     py.stderr.on("data", function (data) {
-        console.log("Pipe data from python script ...");
         data2send = data.toString();
-        console.log("Error below")
-        console.log(data2send)
+        res.send({message: "Error!"});
     });
     // py.on("close", () => {
     //
