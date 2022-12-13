@@ -1,15 +1,17 @@
-import {Outlet, Navigate, useLocation, useNavigate} from "react-router-dom";
+import {Outlet, Navigate, useLocation, useNavigate,Routes, Route} from "react-router-dom";
 
-import home from "./Home";
 import Axios from "axios";
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
+import Home from "./Home";
 
 
 const PrivateRoutes = () => {
     const baseUrl = process.env.baseURL || "http://localhost:3001"
     let navigate = useNavigate();
 
-
+    const navHome = () =>{
+        navigate('/');
+    }
     const [loginStatus, setloginStatus] = useState(false)
 
     const userAuth=()=>{
@@ -20,23 +22,33 @@ const PrivateRoutes = () => {
                 console.log("private resposne", response)
             if (response.data.auth==true){
                 setloginStatus(true)
-            } else {
-                setloginStatus(false)
             }
+            // else {
+            //     setloginStatus(false)
+            // }
         });
     };
     userAuth()
+    console.log(loginStatus)
 
-        // Update the document title using the browser API
-        // userAuth()
-        console.log("right before our sign in" )
-        if (loginStatus){
-            console.log("inside login status",loginStatus)
-            let auth = {'token':loginStatus}
+        // if (loginStatus){
+        //     console.log("inside login status",loginStatus)
+        //     let auth = {'token':loginStatus}
+        //
+        //     return(
+        //         // auth.token ? <Outlet/> : navigate('/')
+        //         // auth.token ? <Outlet/> : <Home/>
+        //         auth.token ? <Outlet/> : <Navigate to="/"/>
+        //     )
+        // } else {
+        //     navHome()
+        // }
+
             return(
-                auth.token ? <Outlet/> : <Navigate to="/"/>
+        //         // auth.token ? <Outlet/> : navigate('/')
+        //         // auth.token ? <Outlet/> : <Home/>
+                localStorage.getItem("token") ? <Outlet/> : <Navigate to="/"/>
             )
-        }
 
 
 }

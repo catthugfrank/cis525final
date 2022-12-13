@@ -41,8 +41,9 @@ function Home() {
             if (!response.data.auth){
                 setloginStatus(response.data.message)
             } else {
-                // setloginStatus(response.data.message)
+                setloginStatus(response.data.message)
                 localStorage.setItem("token", response.data.token)
+                localStorage.setItem("username", username)
             }
             userAuth()
             console.log(response.data);
@@ -53,14 +54,16 @@ function Home() {
     const componentA = () =>{
         navigate('/loggedhome',{state:{username: username}});
     }
-
-    const runML = () =>{
-        // navigate('/getAnswer');
-        console.log("Hit")
-        Axios.post(baseUrl+'/getAnswer').then((response)=>{
-            console.log("WORKED!");
-        });
+    const navAbout = () =>{
+        navigate('/about');
     }
+    const navHome = () =>{
+        navigate('/');
+    }
+    const navContactUs = () =>{
+        navigate('/contactus');
+    }
+
     const userAuth=()=>{
         Axios.get(baseUrl+"/isUserAuth", {
             headers:{
@@ -74,14 +77,25 @@ function Home() {
 
     return (
         <div className="Home">
+
           <div className="registration">
+
+            <hr/>
+            <button className="title-button" type="button" onClick={navHome}>>Home</button>
+            <button className="title-button" type="button" onClick={navAbout}>>About</button>
+            <button className="title-button" type="button" onClick={navContactUs}>>Contact Us</button>
+                {/*<button className="title-button" type="button"><a href="./about.html">About</a></button>*/}
+                {/*<button className="title-button" type="button"><a href="./pricing.html">Pricing</a></button>*/}
+                {/*<button className="title-button" type="button"><a href="./contact.html">Contact Information</a></button>*/}
+            <hr/>
+
             <h1>Registration</h1>
             <label>Username</label>
-            <input type="text" onChange={(e)=>{
+            <input type="text" placeholder="Username..." onChange={(e)=>{
                 setUsernameReg(e.target.value);
             }}/>
             <label>Password</label>
-            <input type="text" onChange={(e)=>{
+            <input type="text" placeholder="Password..." onChange={(e)=>{
                 setPasswordReg(e.target.value);
             }}/>
             <button onClick={register}>Register</button>
@@ -101,7 +115,6 @@ function Home() {
             }}/>
             <button onClick={login}>Login</button>
               <h1>{loginStatus}</h1>
-              <button onClick={runML}>Run ML</button>
           </div>
 
         </div>

@@ -12,10 +12,18 @@ import Home from "./Pages/Home";
 import LoggedHome from "./Pages/LoggedHome";
 
 import ContactUs from "./Pages/ContactUs";
+import About from "./Pages/About";
 import ErrorPage from "./Pages/ErrorPage";
 import PrivateRoutes from "./Pages/PrivateRoutes";
-
+import AppLogout from "./AppLogout";
 function App() {
+    const MainDashboardEntry = () => {
+        return (
+            <AppLogout>
+                <LoggedHome />
+            </AppLogout>
+        )
+    }
     // const [usernameReg, setUsernameReg] = useState('')
     // const [passwordReg, setPasswordReg] = useState('')
     //
@@ -56,9 +64,12 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route element={<PrivateRoutes/>}>
-                    <Route path="/loggedhome" element={<LoggedHome/>} exact/>
+                    <Route path="/loggedhome" element={<MainDashboardEntry/>}/>
+
+                    {/*<Route path="/loggedhome" element={<LoggedHome/>} exact/>*/}
                 </Route>
                 <Route path="/contactus" element={<ContactUs/>}/>
+                <Route path="/about" element={<About/>}/>
                 <Route path="*" element={<ErrorPage/>}/>
             </Routes>
         </Router>
