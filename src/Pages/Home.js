@@ -33,6 +33,13 @@ function Home() {
         });
     };
 
+    var renderComp=() => {
+        if(this.state.loginSuccess===true){
+            return(<button/>);
+        }
+
+    }
+
     const login =() => {
         Axios.post(baseUrl+'/login', {
             username: username,
@@ -63,6 +70,22 @@ function Home() {
     const navContactUs = () =>{
         navigate('/contactus');
     }
+    const navLoggedHome = () =>{
+        navigate('/loggedhome');
+    }
+    const signOut =() =>{
+        localStorage.clear()
+        navigate('/');
+    }
+
+    const SignOutButton =() =>{
+        return (
+            <button className="title-button" type="button" onClick={signOut}>Sign Out</button>
+        )
+    }
+
+    const NotLogged =() =>{
+    }
 
     const userAuth=()=>{
         Axios.get(baseUrl+"/isUserAuth", {
@@ -75,15 +98,20 @@ function Home() {
         });
     };
 
+
+
     return (
         <div className="Home">
 
           <div className="registration">
 
             <hr/>
-            <button className="title-button" type="button" onClick={navHome}>>Home</button>
-            <button className="title-button" type="button" onClick={navAbout}>>About</button>
-            <button className="title-button" type="button" onClick={navContactUs}>>Contact Us</button>
+
+            <button className="title-button" type="button" onClick={navHome}>Home</button>
+            <button className="title-button" type="button" onClick={navAbout}>About</button>
+            <button className="title-button" type="button" onClick={navContactUs}>Contact Us</button>
+              <button className="title-button" type="button" onClick={navLoggedHome}>Logged</button>
+              {localStorage.getItem("token")? <SignOutButton/> : <NotLogged/>}
                 {/*<button className="title-button" type="button"><a href="./about.html">About</a></button>*/}
                 {/*<button className="title-button" type="button"><a href="./pricing.html">Pricing</a></button>*/}
                 {/*<button className="title-button" type="button"><a href="./contact.html">Contact Information</a></button>*/}

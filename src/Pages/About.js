@@ -18,9 +18,9 @@ const About = () => {
         <body>
         <div>
             <hr/>
-            <button className="title-button" type="button" onClick={navHome}>>Home</button>
-            <button className="title-button" type="button" onClick={navAbout}>>About</button>
-            <button className="title-button" type="button" onClick={navContactUs}>>Contact Us</button>
+            <button className="title-button" type="button" onClick={navHome}>Home</button>
+            <button className="title-button" type="button" onClick={navAbout}>About</button>
+            <button className="title-button" type="button" onClick={navContactUs}>Contact Us</button>
             <hr/>
             <h1>About Us</h1>
 

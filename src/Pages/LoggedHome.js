@@ -34,6 +34,19 @@ const LoggedHome = () => {
             }
         });
     };
+
+    const navAbout = () =>{
+        navigate('/about');
+    }
+    const navHome = () =>{
+        navigate('/');
+    }
+    const navContactUs = () =>{
+        navigate('/contactus');
+    }
+    const navLoggedHome = () =>{
+        navigate('/loggedhome');
+    }
     userAuth()
     const signOut =() =>{
         localStorage.clear()
@@ -82,6 +95,10 @@ const LoggedHome = () => {
 
         <div>
             <hr/>
+            <button className="title-button" type="button" onClick={navHome}>Home</button>
+            <button className="title-button" type="button" onClick={navAbout}>About</button>
+            <button className="title-button" type="button" onClick={navContactUs}>Contact Us</button>
+            <button className="title-button" type="button" onClick={navLoggedHome}>Logged</button>
             <button onClick={signOut}>Sign Out</button>
             <hr/>
             <h2>Welcome to Page Two</h2>
