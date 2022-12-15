@@ -16,6 +16,7 @@ import About from "./Pages/About";
 import ErrorPage from "./Pages/ErrorPage";
 import PrivateRoutes from "./Pages/PrivateRoutes";
 import AppLogout from "./AppLogout";
+import Users from "./Pages/Users";
 function App() {
     const MainDashboardEntry = () => {
         return (
@@ -65,11 +66,12 @@ function App() {
                 <Route path="/" element={<Home/>}/>
                 <Route element={<PrivateRoutes/>}>
                     <Route path="/loggedhome" element={<MainDashboardEntry/>}/>
-
+                    <Route path="/users" element={<Users/>}/>
                     {/*<Route path="/loggedhome" element={<LoggedHome/>} exact/>*/}
                 </Route>
                 <Route path="/contactus" element={<ContactUs/>}/>
                 <Route path="/about" element={<About/>}/>
+                {/*<Route path="/users" element={<Users/>}/>*/}
                 <Route path="*" element={<ErrorPage/>}/>
             </Routes>
         </Router>

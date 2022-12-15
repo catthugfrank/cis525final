@@ -161,21 +161,29 @@ app.post('/register', (req, res)=>{
     const username = req.body.username.toLowerCase().trim();
     const password = req.body.password;
 
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+
     var usernameRe = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     var passwordRe = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
 
+    if (username && password && firstname && lastname){
     if (usernameRe.test(username) && passwordRe.test(req.body.password)) {
-        const query= "INSERT INTO DB_GROUP_07.dbo.users (username,password) VALUES("+"'"+username+"','"+password+"'"+');'
+        const query= "INSERT INTO DB_GROUP_07.dbo.users (username,password,fname,lname) VALUES("+"'"+username+"','"+password+""+"','"+firstname+"'"+",'"+lastname+"'"+');'
+        console.log(query)
         sql.connect(sqlConfig).then(pool => {
             return pool.request().query(query)
         }).then(result => {
+            console.log(result)
             if(result.rowsAffected[0]==1){
                 res.send({message: "Registration Successful!"});
             }
         }).catch(err => {
+            console.log(err)
             if (err.number==2627) {
                 res.send({message: "Username is already taken!!"});
             } else {
+
                 res.send({message: "Error!"});
             }
         });
@@ -187,6 +195,8 @@ app.post('/register', (req, res)=>{
         } else if (!passwordRe.test(req.body.password)){
             res.send({message: "Password must contain minimum 8 letter password, with at least a symbol, upper and lower case letters and a number"});
         }
+    }}else{
+        res.send({message: "You are missing a value!"});
     }
 });
 // app.post('/login', (req,res)=>{
@@ -234,6 +244,59 @@ app.post('/login', async (req, res) => {
     }).catch(err => {
         console.log(err)
         res.json({auth:false,message:"Wrong username/password combination!"});
+    });
+
+});
+
+app.post('/users', async (req, res) => {
+
+    const query= "select top 10 username from DB_GROUP_07.dbo.users"
+
+
+    sql.connect(sqlConfig).then(pool => {
+
+        return pool.request().query(query)
+
+    }).then(result => {
+        // console.log(result)
+        if(result.rowsAffected[0]>0){
+            console.log("This is result",result.recordset)
+            res.json({result: result.recordset})
+        }
+
+    }).catch(err => {
+        console.log(err)
+    });
+
+});
+
+app.post('/update', async (req, res) => {
+    const username = req.body.username.toLowerCase().trim();
+    const password = req.body.password;
+
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+
+    const query= "UPDATE DB_GROUP_07.dbo.users set fname="+"'"+firstname+"', lname='"+lastname+"' where username='"+username+"'and password='"+password+"';"
+    console.log(query)
+
+    sql.connect(sqlConfig).then(pool => {
+
+        return pool.request().query(query)
+
+    }).then(result => {
+        console.log(result)
+        if(result.rowsAffected[0]>0){
+            console.log("This is result",result.recordset)
+            res.json({result: result.recordset, message:"Name updated!"})
+        } else{
+            res.json({message:"Error!"})
+
+        }
+
+    }).catch(err => {
+        console.log(err)
+        res.json({message:"Error!"})
     });
 
 });

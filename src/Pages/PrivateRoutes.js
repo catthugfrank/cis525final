@@ -28,8 +28,7 @@ const PrivateRoutes = () => {
             // }
         });
     };
-    userAuth()
-    console.log(loginStatus)
+    // userAuth()
 
         // if (loginStatus){
         //     console.log("inside login status",loginStatus)

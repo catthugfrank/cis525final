@@ -14,6 +14,26 @@ const ContactUs = () => {
     const navContactUs = () =>{
         navigate('/contactus');
     }
+    const navLoggedHome = () =>{
+        navigate('/loggedhome');
+    }
+
+    const navUsers = () =>{
+        navigate('/users');
+    }
+    const signOut =() =>{
+        localStorage.clear()
+        navigate('/');
+    }
+
+    const SignOutButton =() =>{
+        return (
+            <button className="title-button" type="button" onClick={signOut}>Sign Out</button>
+        )
+    }
+
+    const NotLogged =() =>{
+    }
     return (
         <body>
         <div>
@@ -21,7 +41,9 @@ const ContactUs = () => {
             <button className="title-button" type="button" onClick={navHome}>Home</button>
             <button className="title-button" type="button" onClick={navAbout}>About</button>
             <button className="title-button" type="button" onClick={navContactUs}>Contact Us</button>
-            <hr/>
+            <button className="title-button" type="button" onClick={navLoggedHome}>Logged</button>
+            <button className="title-button" type="button" onClick={navUsers}>Users</button>
+            {localStorage.getItem("token")? <SignOutButton/> : <NotLogged/>}
             <h1>Contact Us</h1>
         </div>
         <div>
@@ -51,7 +73,7 @@ const ContactUs = () => {
                 <br/>
                 <textarea className="inputform" id="reason" name="reason"></textarea>
                 <br/>
-                <button className="title-button" type="button">Submit</button>
+                <button className="title-button" type="button" onClick={navHome}>Submit</button>
             </form>
         </div>
         </body>

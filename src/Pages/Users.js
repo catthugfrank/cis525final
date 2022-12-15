@@ -1,10 +1,28 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {
+    useLocation,
     useNavigate
 } from "react-router-dom";
+import Axios from "axios";
+import dropdown from "./PageComponent/Dropdown";
+import Dropdown from "./PageComponent/Dropdown";
 
-const About = () => {
+const Users = () => {
+    const baseUrl = process.env.baseURL || "http://localhost:3001"
     let navigate = useNavigate();
+    const location = useLocation();
+    const [items, setItems] = useState([]);
+
+
+    const [users, setUsers] = useState([])
+    const getUsers =() => {
+        Axios.post(baseUrl+'/users', {
+        }).then((response)=>{
+            setUsers(response.data.response)
+            console.log(users)
+        });
+    };
+
     const navAbout = () =>{
         navigate('/about');
     }
@@ -35,7 +53,7 @@ const About = () => {
     const NotLogged =() =>{
     }
     return (
-        <body>
+
         <div>
             <hr/>
             <button className="title-button" type="button" onClick={navHome}>Home</button>
@@ -45,12 +63,10 @@ const About = () => {
             <button className="title-button" type="button" onClick={navUsers}>Users</button>
             {localStorage.getItem("token")? <SignOutButton/> : <NotLogged/>}
             <hr/>
-            <h1>About Us</h1>
-
-            <p>Hello! My name is Frank and I'm currently a software engineer at General Motors. I like things that work. That's why I went into engineering!</p>
+            <Dropdown/>
         </div>
-        </body>
+
     );
 };
 
-export default About;
+export default Users;

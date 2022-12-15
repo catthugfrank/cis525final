@@ -1,14 +1,15 @@
 import React, {useState, useEffect} from "react";
 import {useNavigate,useLocation} from "react-router-dom";
 import Axios from "axios";
-
+import changeName from "./PageComponent/ChangeName";
+import ChangeName from "./PageComponent/ChangeName";
 
 const LoggedHome = () => {
     const baseUrl = process.env.baseURL || "http://localhost:3001"
     const location = useLocation();
     let navigate = useNavigate();
 
-    let username = location.state.username
+    let username = ""
 
     const [password, setPassword] = useState('')
     const [delStatus, setDelStatus] = useState(false)
@@ -17,23 +18,9 @@ const LoggedHome = () => {
     const [orig, setOrig] = useState('')
     const [answer, setAnswer] = useState('')
 
-
-    const userAuth=()=>{
-        console.log("Top of user auth")
-        Axios.get(baseUrl+"/isUserAuth", {
-            headers:{
-                "x-access-token": localStorage.getItem("token")
-            }}).then((response)=>{
-            console.log("private resposne", response)
-            if (response.data.auth.equals(true)){
-                console.log("Authed")
-            } else {
-                console.log("Not Logged in!")
-                localStorage.clear()
-                navigate('/');
-            }
-        });
-    };
+    useEffect(function(){
+        const username = localStorage.getItem("username")
+    },[]);
 
     const navAbout = () =>{
         navigate('/about');
@@ -47,7 +34,11 @@ const LoggedHome = () => {
     const navLoggedHome = () =>{
         navigate('/loggedhome');
     }
-    userAuth()
+
+    const navUsers = () =>{
+        navigate('/users');
+    }
+    // userAuth()
     const signOut =() =>{
         localStorage.clear()
         navigate('/',{state:{delState:true}});
@@ -99,11 +90,12 @@ const LoggedHome = () => {
             <button className="title-button" type="button" onClick={navAbout}>About</button>
             <button className="title-button" type="button" onClick={navContactUs}>Contact Us</button>
             <button className="title-button" type="button" onClick={navLoggedHome}>Logged</button>
+            <button className="title-button" type="button" onClick={navUsers}>Users</button>
             <button onClick={signOut}>Sign Out</button>
             <hr/>
             <h2>Welcome to Page Two</h2>
             {/*<p>Welcome {location.state.username}!</p>*/}
-            <p>Welcome {localStorage.getItem("username")}!</p>
+            <p>Welcome {localStorage.getItem("fname")} {localStorage.getItem("lname")}!</p>
 
             <div>
                 <h2>Get Answer:</h2>
@@ -137,6 +129,9 @@ const LoggedHome = () => {
                 }}/>
                 <button onClick={deleteAcc}>Delete Account</button>
                 <h1>{delStatus}</h1>
+                <br/>
+                <ChangeName/>
+
             </div>
         </div>
     );
