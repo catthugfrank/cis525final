@@ -6,6 +6,7 @@ import {
     useLocation,
     useNavigate
 } from "react-router-dom";
+import './PageComponent/TitleButton.css'
 import useAnalyticsEventTracker from './PageComponent/useAnalyticsEventTracker';
 
 function Home() {

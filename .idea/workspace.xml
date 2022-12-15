@@ -2,20 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1d95bb7-8fef-4e15-b36e-4289dd8fe889" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Pages/PageComponent/ChangeName.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pages/PageComponent/Dropdown.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pages/PageComponent/useAnalyticsEventTracker.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pages/Users.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/PageComponent/TitleButton.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/About.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/About.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/ContactUs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/ContactUs.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/LoggedHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LoggedHome.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/PrivateRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/PrivateRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/Users.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/Users.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +97,7 @@
       <workItem from="1669562419411" duration="19209000" />
       <workItem from="1670201706063" duration="14273000" />
       <workItem from="1670707656067" duration="8681000" />
-      <workItem from="1670790472746" duration="54597000" />
+      <workItem from="1670790472746" duration="55534000" />
     </task>
     <servers />
   </component>

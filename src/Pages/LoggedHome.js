@@ -3,6 +3,7 @@ import {useNavigate,useLocation} from "react-router-dom";
 import Axios from "axios";
 import changeName from "./PageComponent/ChangeName";
 import ChangeName from "./PageComponent/ChangeName";
+import './PageComponent/TitleButton.css'
 
 const LoggedHome = () => {
     const baseUrl = process.env.baseURL || "http://localhost:3001"
@@ -91,7 +92,7 @@ const LoggedHome = () => {
             <button className="title-button" type="button" onClick={navContactUs}>Contact Us</button>
             <button className="title-button" type="button" onClick={navLoggedHome}>Logged</button>
             <button className="title-button" type="button" onClick={navUsers}>Users</button>
-            <button onClick={signOut}>Sign Out</button>
+            <button className="title-button" onClick={signOut}>Sign Out</button>
             <hr/>
             <h2>Welcome to Page Two</h2>
             {/*<p>Welcome {location.state.username}!</p>*/}
