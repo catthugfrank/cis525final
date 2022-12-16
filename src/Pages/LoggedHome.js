@@ -10,7 +10,7 @@ const LoggedHome = () => {
     const location = useLocation();
     let navigate = useNavigate();
 
-    let username = ""
+    // let username = ""
 
     const [password, setPassword] = useState('')
     const [delStatus, setDelStatus] = useState(false)
@@ -46,7 +46,7 @@ const LoggedHome = () => {
     }
     const deleteAcc =() => {
         Axios.post(baseUrl+'/deleteAcc', {
-            username: username,
+            username: localStorage.getItem("username"),
             password: password,
         }).then((response)=>{
             if (response.data.status){
@@ -63,9 +63,9 @@ const LoggedHome = () => {
             orig: orig,
             question: question,
         }).then((response)=>{
-            console.log("LOGGEDHOME RESULTS")
+            // console.log("LOGGEDHOME RESULTS")
             if (response.data.message){
-                console.log(response.data.message)
+                // console.log(response.data.message)
                 setAnswer(response.data.message)
             }
         });
