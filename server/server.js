@@ -355,7 +355,7 @@ app.post('/deleteAcc', (req, res)=>{
 //     console.log("running server");
 // });
 
-const server = app.listen(3001, () => {
+const server = app.listen(PORT, () => {
     const port = server.address().port;
     console.log(`Express is working on port ${port}`);
 });
