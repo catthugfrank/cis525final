@@ -27,7 +27,7 @@ function Home() {
 
     const [registerStatus, setRegStatus] = useState('')
 
-    const TRACKING_ID = "G-XT30W0LD92"; // OUR_TRACKING_ID
+    const TRACKING_ID = "UA-240686094-1"; // OUR_TRACKING_ID
     ReactGA.initialize(TRACKING_ID);
     const gaEventTracker = useAnalyticsEventTracker('Sign In');
     const register =() => {
