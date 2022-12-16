@@ -9,7 +9,7 @@ const mysql = require("mysql");
 const cors= require("cors");
 const app = express();
 const { spawn } = require("child_process");
-
+const baseUrl = process.env.baseURL || "http://localhost:3000"
 app.use(cors());
 
 app.use(express.json());
@@ -87,7 +87,7 @@ app.get('/isUserAuth', verifyJWT, (req, res) => {
 
 app.use(
     cors({
-        origin: ["http://localhost:8027"],
+        origin: [baseUrl],
         methods: ["GET", "POST"],
         credentials: true,
     })
