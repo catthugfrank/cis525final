@@ -93,38 +93,38 @@ app.use(
     })
 );
 
-app.post('/getAnswer', (req, res)=> {
-    // const input =
-    var data2send;
-    // process.env.Path='../venv/Scripts/python.exe'
-    const orig = req.body.orig;
-    const question = req.body.question;
-
-    var path = require("path");
-    process.env.PATH=path.resolve("../") + "/venv/bin";
-    const py = spawn("python", ["./ml.py",question,orig]);
-
-    py.stdout.on("data", function (data) {
-
-        data2send = data.toString();
-        console.log("Worked", data2send)
-        res.send({message: data2send});
-    });
-    //
-    py.stderr.on("data", function (data) {
-        // console.log("Failled", data)
-        data2send = data.toString();
-        console.log("Failled", data2send)
-        res.send({message: "Error!"});
-    });
+// app.post('/getAnswer', (req, res)=> {
+//     // const input =
+//     var data2send;
+//     // process.env.Path='../venv/Scripts/python.exe'
+//     const orig = req.body.orig;
+//     const question = req.body.question;
+//
+//     var path = require("path");
+//     process.env.PATH=path.resolve("../") + "/venv/bin";
+//     const py = spawn("python", ["./ml.py",question,orig]);
+//
+//     py.stdout.on("data", function (data) {
+//
+//         data2send = data.toString();
+//         console.log("Worked", data2send)
+//         res.send({message: data2send});
+//     });
+//     //
+//     py.stderr.on("data", function (data) {
+//         // console.log("Failled", data)
+//         data2send = data.toString();
+//         console.log("Failled", data2send)
+//         res.send({message: "Error!"});
+//     });
     // py.on("close", () => {
     //
     // })
-});
-// app.post('/getAnswer', (req, res)=> {
-//     // const input =
-//     res.json({message: "Finished"})
 // });
+app.post('/getAnswer', (req, res)=> {
+    // const input =
+    res.json({message: "Finished"})
+});
 
 app.post('/getPDF', (req, res)=> {
     console.log(req)
